@@ -16,7 +16,10 @@ passwd=ysu123
 create: create-mysql create-phpmyadmin
 
 create-mysql:
+	[ -d ${vol1} ] || mkdir ${vol1}
+	[ -d ${vol2} ] || mkdir ${vol2}
 	docker run -d -it --name ${name} -v ${vol1}:${mnt1} -v ${vol2}:${mnt2} -e MYSQL_ROOT_PASSWORD=${passwd} ${image}
+
 create-phpmyadmin:
 	docker run --name ${name2} -d --link ${name}:db -p 8080:80 ${image2}
 

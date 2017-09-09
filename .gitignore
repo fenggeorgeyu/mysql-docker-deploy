@@ -1,5 +1,5 @@
 .DS_Store
-db/*
-!db/.empty
 shared/*
 !shared/.empty
+db/*
+!db/.empty
