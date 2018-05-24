@@ -1,9 +1,11 @@
+*Warning*: This script only works with docker mysql:5. The latest mysql 8.0 update the password plugin which may conflict with phpmyadmin login. It's advised to only use mysql:5 for now.
+
 # mysql docker deploy
 
 
 Before start use docker to pull the images of mysql and phpmyadmin
 
-    docker pull mysql
+    docker pull mysql:5
     docker pull phpmyadmin/phpmyadmin
 
 To create the containers of mysql and phpmyadmin run

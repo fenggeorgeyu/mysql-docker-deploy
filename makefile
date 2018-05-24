@@ -1,6 +1,6 @@
 
 name=mysql-dk1
-image=mysql
+image=mysql:5
 name2=phpmyadmin-dk1
 image2=phpmyadmin/phpmyadmin
 host_dir=$(shell pwd)
@@ -20,19 +20,25 @@ pd1=3306
 passwd=ysu123
 
 
+pull:
+	docker pull mysql:5
+	docker pull phpmyadmin/phpmyadmin
+
 create: create-mysql create-phpmyadmin
 
 create-mysql:
 	[ -d ${vol1} ] || mkdir ${vol1}
 	[ -d ${vol2} ] || mkdir ${vol2}
 	[ -d ${vol3} ] || mkdir ${vol3}
-	docker run -d -it --name ${name} -v ${vol1}:${mnt1} -v ${vol2}:${mnt2} -v ${vol3}:${mnt3} -e MYSQL_ROOT_PASSWORD=${passwd} ${image}
-
-	# sleep 3
-	# docker exec ${name} mysql -uroot -p${passwd} -e "alter user 'root' identified with mysql_native_password by '${passwd}';"
+	docker run -d -it --name ${name} -v ${vol1}:${mnt1} -v ${vol2}:${mnt2} -e MYSQL_ROOT_PASSWORD=${passwd} ${image}
 
 create-phpmyadmin:
 	docker run --name ${name2} -d --link ${name}:db -p 8080:80 ${image2}
+
+# fix problem of phpmyadmin connect to MySQL 8
+root-passwd-config:
+	sleep 3
+	docker exec mysql-dk1 mysql -uroot -p${passwd} -e "alter user 'root' identified with mysql_native_password by '${passwd}';"
 
 bash:
 	docker exec -it ${name} /bin/bash
