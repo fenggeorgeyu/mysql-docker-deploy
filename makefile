@@ -16,7 +16,7 @@ vol3=${host_dir}/mysql-config
 mnt3=/etc/mysql/conf.d
 
 pl1=3306
-pd1=3306
+pdk1=3306
 passwd=ysu123
 
 
@@ -30,7 +30,7 @@ create-mysql:
 	[ -d ${vol1} ] || mkdir ${vol1}
 	[ -d ${vol2} ] || mkdir ${vol2}
 	[ -d ${vol3} ] || mkdir ${vol3}
-	docker run -d -it --name ${name} -v ${vol1}:${mnt1} -v ${vol2}:${mnt2} -v ${vol3}:${mnt3} -e MYSQL_ROOT_PASSWORD=${passwd} ${image}
+	docker run -d -it --name ${name} -v ${vol1}:${mnt1} -v ${vol2}:${mnt2} -v ${vol3}:${mnt3} -e MYSQL_ROOT_PASSWORD=${passwd} -p ${pl1}:${pdk1} ${image}
 
 create-phpmyadmin:
 	docker run --name ${name2} -d --link ${name}:db -p 8080:80 ${image2}
