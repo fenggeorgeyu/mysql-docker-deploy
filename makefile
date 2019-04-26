@@ -19,6 +19,9 @@ pl1=3306
 pdk1=3306
 passwd=ysu123
 
+# control if container auto restart on docker starting
+# restart=--restart=always
+restart=
 
 pull:
 	docker pull mysql:5
@@ -30,10 +33,10 @@ create-mysql:
 	[ -d ${vol1} ] || mkdir ${vol1}
 	[ -d ${vol2} ] || mkdir ${vol2}
 	[ -d ${vol3} ] || mkdir ${vol3}
-	docker run -d -it --name ${name} -v ${vol1}:${mnt1} -v ${vol2}:${mnt2} -v ${vol3}:${mnt3} -e MYSQL_ROOT_PASSWORD=${passwd} -p ${pl1}:${pdk1} ${image}
+	docker run -d -it ${restart} --name ${name} -v ${vol1}:${mnt1} -v ${vol2}:${mnt2} -v ${vol3}:${mnt3} -e MYSQL_ROOT_PASSWORD=${passwd} -p ${pl1}:${pdk1} ${image}
 
 create-phpmyadmin:
-	docker run --name ${name2} -d --link ${name}:db -p 8080:80 ${image2}
+	docker run --name ${name2} -d ${restart} --link ${name}:db -p 8080:80 ${image2}
 
 # fix problem of phpmyadmin connect to MySQL 8
 root-passwd-config:
