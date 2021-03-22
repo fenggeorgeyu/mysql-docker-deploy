@@ -3,7 +3,11 @@ name=mysql-dk1
 image=mysql:5
 name2=phpmyadmin-dk1
 image2=phpmyadmin/phpmyadmin
+pl1=3306
+pdk1=3306
+passwd=ysu123
 host_dir=$(shell pwd)
+
 # db folder
 vol1=${host_dir}/db
 mnt1=/var/lib/mysql
@@ -14,10 +18,6 @@ mnt2=/shared
 # mysql config folder
 vol3=${host_dir}/mysql-config
 mnt3=/etc/mysql/conf.d
-
-pl1=3306
-pdk1=3306
-passwd=ysu123
 
 # control if container auto restart on docker starting
 # restart=--restart=always
@@ -43,12 +43,6 @@ root-passwd-config:
 	sleep 3
 	docker exec mysql-dk1 mysql -uroot -p${passwd} -e "alter user 'root' identified with mysql_native_password by '${passwd}';"
 
-bash:
-	docker exec -it ${name} /bin/bash
-
-connect:
-	docker exec -it ${name} mysql -uroot -p${passwd}
-
 start:
 	docker start ${name}
 	docker start ${name2}
@@ -60,6 +54,17 @@ stop:
 delete:
 	docker rm ${name}
 	docker rm ${name2}
+
+commit:
+	git add .
+	git commit -am 'auto'
+	git push
+
+bash:
+	docker exec -it ${name} /bin/bash
+
+sql:
+	docker exec -it ${name} mysql -uroot -p${passwd}
 
 
 
