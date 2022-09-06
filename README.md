@@ -1,5 +1,14 @@
 *Warning*: This script only works with docker mysql:5. The latest mysql 8.0 update the password plugin which may conflict with phpmyadmin login. It's advised to only use mysql:5 for now.
 
+# required software
+
+* Docker
+    * https://docs.docker.com/engine/install/
+* GNU make
+    * mac: `brew install make`
+    * centos: `sudo yum install make`
+    * ubuntu: `sudo apt install make`
+
 # mysql docker deploy
 
 
