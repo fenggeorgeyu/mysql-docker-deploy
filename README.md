@@ -27,21 +27,25 @@ Before start use docker to pull the images of mysql and phpmyadmin
 
    make sql
 
+![access sql](doc/fig/make_sql.png)
+
 1. To access the bash of container
 
-   make connect
+   make bash
+
+![access bash](doc/fig/make_bash.png)
 
 1. To stop containers
 
    make stop
 
-1. To start containers
+1. To start or resume containers
 
    make start
 
-1. To delete containers
+1. To delete containers (need to stop containers first):
 
    make delete
 
-
+![start/stop/delete containers](doc/fig/make_start_stop_delete.png)
 
