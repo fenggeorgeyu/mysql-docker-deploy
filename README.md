@@ -19,29 +19,29 @@ Before start use docker to pull the images of mysql and phpmyadmin
 
 1. To create the containers of mysql and phpmyadmin run
 
-    make create
+      make create
 
 1. To access phpymyadmin type in your web browser: `http://localhost:8080`. By default, the root password is `ysu123`. You may change the password by change the `passwd` in the makefile.
 
 1. To access the SQL of MySQL
 
-   make sql
+      make sql
 
 1. To access the bash of container
 
-    make connect
+      make connect
 
 1. To stop containers
 
-    make stop
+      make stop
 
 1. To start containers
 
-    make start
+      make start
 
 1. To delete containers
 
-    make delete
+      make delete
 
 
 
