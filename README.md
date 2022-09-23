@@ -21,7 +21,7 @@ Before start use docker to pull the images of mysql and phpmyadmin
 
     make create
 
-To access phpymyadmin type in your web browser: `http://localhost:8080`. By default, the root password is `ysu123`. You may change the password in the makefile `passwd`
+1. To access phpymyadmin type in your web browser: `http://localhost:8080`. By default, the root password is `ysu123`. You may change the password by change the `passwd` in the makefile.
 
 1. To access the SQL of MySQL
 
