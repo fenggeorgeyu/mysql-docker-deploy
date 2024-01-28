@@ -2,6 +2,7 @@
 name1=mysql-dk1
 #image1=mysql:5
 image1=mariadb
+db_cmd=mariadb
 name2=phpmyadmin-dk1
 image2=phpmyadmin/phpmyadmin
 pl1=3306
@@ -65,7 +66,7 @@ bash:
 	docker exec -it ${name1} /bin/bash
 
 sql:
-	docker exec -it ${name1} mysql -uroot -p${passwd}
+	docker exec -it ${name1} ${db_cmd} -uroot -p${passwd}
 
 
 
